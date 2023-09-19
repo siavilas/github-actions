@@ -1,33 +1,30 @@
 name: hola-mundo
+#Es el nombre del Workflow que aparecerá en la sección de Actions en Github (opcional pero recomendadisimo).
 
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+run-name: Estoy aprendiendo GitHub Actions!
+# Es el nombre específico del Workflow que aparecerá en la pestaña de Actions en Github (Opcional).
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+on: [push]
+#Esta se divide en 2. El “on” será la etiqueta que determine los triggers por los que se 
+# activará el Workflow; el [push] será el trigger por el que ha sido activado. Como es una lista, puedes agregar más triggers.
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    
-    # Steps represent a sequence of tasks that will be executed as part of the job
+jobs: #Agrupará todos los jobs que ocurrirán en el Workflow (no contiene valor).
+  hola-mundo:
+    #Esta es el identificador del job, así se diferenciará del resto 
+    #(no puede contener espacios).
+    runs-on: ubuntu-latest #Especificará el tipo de Runner para este job.
     steps: 
-      - name: CheckoutV3
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
-      # Runs a single command using the runners shell
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v3
-        with:
-           python-version: "3.10"
+      #Agrupará todos los steps del job. Existen 2 tipos de steps, los que correrán actions del 
+      #Marketplace o comandos de shell.
+      - name: Checkout
+      #Nombre del step, su identificador. (también es opcional pero es recomendado usarla).
+        uses: actions/checkout@v3
+        #En este caso se usa la etiqueta uses para importar un action.
+
       
-      - name: script-runing
-        run: python hola-mundo.py
+      - name: Definir variable
+        run: echo "USERNAME-${{ github.actor}}" >> $GITHUB_ENV
+
+      - name: Correr Script
+        run: python hola_mundo.py
+        #En este otro caso se usa la etiqueta run para correr un comando o script.
