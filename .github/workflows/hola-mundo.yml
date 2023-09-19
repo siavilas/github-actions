@@ -23,7 +23,7 @@ jobs: #Agrupará todos los jobs que ocurrirán en el Workflow (no contiene valor
 
       
       - name: Definir variable
-        run: echo "USERNAME-${{ github.actor}}" >> $GITHUB_ENV
+        run: echo "USERNAME=${{ github.actor}}" >> $GITHUB_ENV
 
       - name: Correr Script
         run: python hola_mundo.py
