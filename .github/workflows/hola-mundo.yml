@@ -18,7 +18,7 @@ jobs: #Agrupará todos los jobs que ocurrirán en el Workflow (no contiene valor
       #Marketplace o comandos de shell.
       - name: Checkout
       #Nombre del step, su identificador. (también es opcional pero es recomendado usarla).
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         #En este caso se usa la etiqueta uses para importar un action.
 
       
